@@ -1,0 +1,12 @@
+@import 'tailwindcss';
+
+:root {
+  --v0-primary: #ff6699;
+}
+
+@theme {
+  --color-primary: var(--v0-primary);
+  --color-surface: var(--v0-surface);
+  --color-on-primary: var(--v0-on-primary);
+  --color-on-surface: var(--v0-on-surface);
+}

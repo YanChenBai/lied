@@ -1,0 +1,69 @@
+{
+  "name": "lied",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vp dev",
+    "build": "run-p type-check \"build-only {@}\" --",
+    "preview": "vp preview",
+    "test:unit": "vp test",
+    "build-only": "vp build",
+    "type-check": "vue-tsc --build",
+    "prepare": "vp config"
+  },
+  "dependencies": {
+    "@pinia/colada": "^1.4.5",
+    "@standard-schema/spec": "^1.1.0",
+    "@vuetify/v0": "^1.2.2",
+    "@vueuse/core": "^15.0.0",
+    "cn": "^0.3.0",
+    "ky": "^2.1.0",
+    "motion-v": "^2.4.4",
+    "pinia": "^4.0.3",
+    "vue": "^3.5.42",
+    "vue-router": "^5.3.1",
+    "zod": "^4.6.5",
+    "zod-to-json-schema": "^3.25.2"
+  },
+  "devDependencies": {
+    "@pinia/colada-devtools": "^2.0.0",
+    "@tailwindcss/vite": "^4.3.3",
+    "@tsconfig/node24": "^24.0.5",
+    "@types/jsdom": "^30.0.0",
+    "@types/node": "^24.13.4",
+    "@vitejs/devtools": "^0.7.5",
+    "@vitejs/devtools-kit": "^0.7.5",
+    "@vitejs/devtools-oxc": "^0.7.5",
+    "@vitejs/devtools-rolldown": "^0.7.5",
+    "@vitejs/devtools-vite": "^0.7.5",
+    "@vitejs/devtools-vitest": "^0.7.5",
+    "@vitejs/plugin-vue": "^6.0.8",
+    "@vitest/ui": "^5.0.1",
+    "@vue/test-utils": "^2.5.0",
+    "@vue/tsconfig": "^0.9.1",
+    "jsdom": "^30.0.1",
+    "nitro": "3.0.260903-beta",
+    "npm-run-all2": "^9.0.3",
+    "pathstrider": "^0.0.1",
+    "tailwindcss": "^4.3.3",
+    "typescript": "~6.0.0",
+    "unplugin-auto-import": "^21.1.0",
+    "unplugin-vue-components": "^32.1.0",
+    "vite": "catalog:",
+    "vite-plugin-vue-devtools": "^8.2.1",
+    "vite-plus": "catalog:",
+    "vitest": "catalog:",
+    "vue-tsc": "^3.3.11"
+  },
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "12.4.2",
+      "onFail": "download"
+    }
+  },
+  "engines": {
+    "node": "^22.18.0 || >=24.12.0"
+  }
+}

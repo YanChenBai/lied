@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script server>
+      const data = await fetch(new URL('/api', $URL)).then(r => r.json());
+    </script>
+    <title>{{ data.title }}</title>
+
+    <style>
+      body {
+        --bg-color: {{ data.bgColor }};
+        background: var(--bg-color);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
