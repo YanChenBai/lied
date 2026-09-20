@@ -49,3 +49,6 @@ __screenshots__/
 !.env.example
 .output
 .devtools-oxc
+
+.agents/skills
+.claude/skills

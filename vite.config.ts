@@ -13,53 +13,32 @@ import vueRouter from 'vue-router/vite';
 
 // https://vite.dev/config/
 export default defineConfig({
-  staged: {
-    '*': 'vp check --fix',
-  },
-
-  fmt: {
-    singleQuote: true,
-    sortImports: true,
-    sortTailwindcss: true,
-    sortPackageJson: true,
-    arrowParens: 'avoid',
-    embeddedLanguageFormatting: 'auto',
-  },
-
-  lint: {
-    jsPlugins: [
-      {
-        name: 'vite-plus',
-        specifier: 'vite-plus/oxlint-plugin',
-      },
-    ],
-    rules: {
-      'vite-plus/prefer-vite-plus-imports': 'error',
-    },
-    options: {
-      typeAware: true,
-      typeCheck: true,
-    },
-  },
-
   resolve: {
     tsconfigPaths: true,
   },
 
   plugins: lazyPlugins(() => [
     nitro(),
-    pathstrider(),
-    vueRouter(),
+    pathstrider({
+      output: {
+        types: './.generated/pathstrider.d.ts',
+      },
+    }),
+    vueRouter({
+      dts: './.generated/typed-router.d.ts',
+    }),
     vue(),
     tailwindcss(),
     vueDevTools(),
     PiniaColadaDevtools(),
     components({
       dirs: ['./src/components'],
+      dts: './.generated/components.d.ts',
     }),
     autoImport({
       dirs: ['./src/lib'],
       vueTemplate: true,
+      dts: './.generated/auto-imports.d.ts',
     }),
   ]),
 
@@ -80,11 +59,44 @@ export default defineConfig({
   devtools: {
     enabled: true,
     mcp: true,
+    apply: 'serve',
+    embeddedVisibility: 'hidden',
   },
 
   test: {
     environment: 'jsdom',
     exclude: [...configDefaults.exclude, 'e2e/**'],
     root: fileURLToPath(new URL('./', import.meta.url)),
+  },
+
+  staged: {
+    '*': 'vp check --fix',
+  },
+
+  fmt: {
+    singleQuote: true,
+    sortImports: true,
+    sortTailwindcss: true,
+    sortPackageJson: true,
+    arrowParens: 'avoid',
+    embeddedLanguageFormatting: 'auto',
+    ignorePatterns: ['.generated/**', '.agents/**'],
+  },
+
+  lint: {
+    jsPlugins: [
+      {
+        name: 'vite-plus',
+        specifier: 'vite-plus/oxlint-plugin',
+      },
+    ],
+    rules: {
+      'vite-plus/prefer-vite-plus-imports': 'error',
+    },
+    options: {
+      typeAware: true,
+      typeCheck: true,
+    },
+    ignorePatterns: ['.generated/**', '.agents/**'],
   },
 });
